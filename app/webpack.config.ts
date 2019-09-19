@@ -4,23 +4,18 @@ import path from 'path';
 
 const config: Configuration = {
   mode: "development",
-  entry: './entry.ts',
+  entry: './entry.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    modules: [path.resolve(__dirname, 'node_modules')]
   },
   module: {
     rules: [{
-      test: /\.css$/,
-      use: [
-        {loader: 'style-loader'},
-        {loader: 'css-loader'}
-      ]
-    }, {
-      test: /\.ts$/,
+      test: /\.tsx?$/,
       loader: 'ts-loader',
       exclude: /node_modules/
     }]
